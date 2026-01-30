@@ -1,0 +1,100 @@
+\section{Closure residual, canonical weight, and legitimacy}
+\label{sec:closure_legitimacy}
+
+\subsection{Closure residual and closure energy}
+
+We introduce a closure residual operator
+\begin{equation}
+  \Rop: \mathcal{S} \rightarrow \mathcal{Y},
+\end{equation}
+intended to quantify projection inconsistency between complementary representations of the
+same underlying physical state. 
+
+\emph{Interpretation of the target space.}
+The space $\mathcal{Y}$ represents the linearized space of \emph{projection inconsistency
+observables}: quantities that vanish when the post-merger spacetime admits a consistent
+simultaneous description in both a local radiative representation and an asymptotically
+stationary (Kerr-like) phase representation. In practice, elements of $\mathcal{Y}$ may be
+realized through residuals of constraint-satisfying fields, curvature scalars, or radiative
+fluxes evaluated in an asymptotic basis; the present framework does not require committing to
+a specific realization.
+
+Linearizing around $X_\star$ yields
+\begin{equation}
+  D\Rop_{X_\star}: \Xrad \rightarrow \mathcal{Y}.
+\end{equation}
+
+\emph{Physical interpretation and example construction.}
+In the present application, $\Rop$ measures the degree to which a perturbed post-merger
+spacetime fails to admit a mutually consistent description in two complementary
+representations: (i) a local radiative description appropriate to waveform extraction, and
+(ii) an asymptotically stationary description appropriate to Kerr ringdown. In the language
+of General Relativity, this inconsistency may be viewed as residual violation of vacuum
+Einstein constraints or gauge-consistency conditions when expressed in a basis adapted to the
+late-time Kerr geometry, decaying as the remnant relaxes.
+
+Equivalently, $\Rop$ measures the failure of two nominally equivalent projections of the same
+physical state---one adapted to outgoing radiation and one adapted to stationarity---to
+agree when linearized about the final Kerr background. Closure corresponds to the vanishing of
+this projection mismatch.
+
+Define the quadratic closure energy
+\begin{equation}
+  \Eop(x) \equiv \tfrac12 \normW{D\Rop_{X_\star} x}^2,
+  \label{eq:closure_energy}
+\end{equation}
+where $W$ is a positive weight (inner product) on $\mathcal{Y}$.
+The role of $W$ is to specify which physical ``amount'' of inconsistency is penalized.
+
+\emph{Canonical choice of $W$.}
+Rather than treating $W$ as a freely tunable object, we assume it is fixed (up to an overall
+scale) by two requirements: (i) invariance under admissible reparameterizations of the
+residual variables (e.g.\ changes of gauge, normalization, or basis that preserve the
+physical meaning of constraint violation), and (ii) monotonic decay under physical relaxation.
+Operationally, this corresponds to choosing $W$ such that $\Eop$ coincides, to leading order,
+with the physically radiated energy associated with eliminating constraint or
+projection-inconsistency residuals.
+
+In the present context, admissible reparameterizations include changes of gauge, slicing, and
+representation that preserve the physical radiative content of the spacetime. The requirement
+of monotonic decay under relaxation fixes $W$ up to an overall normalization and excludes
+weights that would artificially amplify non-radiative or gauge-dependent components.
+
+In practice, this identifies $W$ with the quadratic form induced by the energy norm governing
+constraint damping or curvature relaxation in the chosen representation. While $W$ may not be
+strictly unique, physically reasonable choices related by residual-space reparameterizations
+yield equivalent monotonicity behavior for $\Eop$. We treat the existence of such a canonical
+class of weights as a technical assumption in this methods note; sensitivity to alternative
+physically motivated choices is examined in the synthetic demonstrations below and deferred
+for systematic study in future catalog-scale analyses.
+
+Define the closure-depth operator on $\Xrad$:
+\begin{equation}
+  \Dop \equiv (D\Rop_{X_\star})^\ast\, W\, D\Rop_{X_\star},
+  \qquad
+  \Eop(x) = \tfrac12\,\inner{x}{\Dop x}.
+  \label{eq:Dop_def}
+\end{equation}
+By construction, $\Dop$ is positive semidefinite.
+
+\subsection{Legitimacy criterion}
+
+Let $\hat{x}(t)$ be a truncated reconstruction as in \cref{eq:trunc_recon}.
+We define:
+
+\begin{quote}
+\textbf{Legitimacy criterion.}
+A candidate mode family (or truncated reconstruction) is $\Sigma_2$-legitimate on a time
+interval $[t_0,t_1]$ if the reconstructed closure energy is non-increasing,
+\begin{equation}
+  \frac{d}{dt}\Eop(\hat{x}(t)) \le 0,
+  \qquad t\in[t_0,t_1],
+  \label{eq:legitimacy}
+\end{equation}
+to leading order.
+\end{quote}
+
+The criterion is deliberately comparative: if adding a mode improves waveform residuals but
+induces growth or sustained oscillations in $\Eop(\hat{x}(t))$ relative to a simpler
+reconstruction, that mode is interpreted as a non-modal reconstruction element used to patch
+early-time non-normal mixing rather than as an independent physical relaxation channel.

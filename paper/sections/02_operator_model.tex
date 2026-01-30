@@ -1,0 +1,37 @@
+\section{Linearized ringdown as a non-normal relaxation problem}
+\label{sec:operator_model}
+
+Let $X_\star$ denote an asymptotically stationary endpoint of the post-merger evolution, and
+let $\Xrad$ be a radiative tangent space about $X_\star$ whose elements contribute to the
+observed gravitational waveform. We model ringdown as the linearized evolution
+\begin{equation}
+  \dot{x}(t) = \Lop\,x(t), \qquad x(t)\in \Xrad,
+  \label{eq:lin_evol}
+\end{equation}
+with $\Lop$ a closed linear operator. In black hole perturbation theory, the spectrum of $\Lop$ corresponds to the Kerr quasinormal
+mode frequencies \cite{Leaver1985,Berti2009}.
+
+In dissipative systems, $\Lop$ is generally \emph{non-normal}, i.e.\ $[\Lop,\Lop^\ast]\neq 0$.
+Consequently, eigenvectors need not form an orthogonal basis and transient growth or strong
+mode interference may occur even when all eigenvalues are damped. A natural modal framework
+is therefore biorthogonal \cite{TrefethenEmbree2005}: right eigenvectors $v_j$ and left
+eigenvectors $w_j$ satisfy
+\begin{equation}
+  \Lop v_j = \lambda_j v_j, \qquad \Lop^\ast w_j = \overline{\lambda_j}\, w_j,
+\end{equation}
+with normalization $\inner{w_i}{v_j}=\delta_{ij}$ when possible (e.g.\ for a selected set of
+isolated modes).
+
+A \emph{truncated modal reconstruction} is defined by restricting to a finite index set
+$J$:
+\begin{equation}
+  \hat{x}(t) \equiv \sum_{j\in J} c_j\, e^{\lambda_j t} v_j, \qquad
+  c_j \equiv \inner{w_j}{x(0)}.
+  \label{eq:trunc_recon}
+\end{equation}
+This formulation makes explicit that measured modal amplitudes depend on left-eigenvector
+projections and can therefore be sensitive to non-normal conditioning at early times.
+
+Eigenvalues alone do not determine stability. Instead, stability is governed by the
+\emph{resolvent} $(zI-\Lop)^{-1}$ and by the associated pseudospectrum, reviewed in
+\cref{sec:pseudospectral_isolation}.

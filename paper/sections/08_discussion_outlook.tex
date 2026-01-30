@@ -1,0 +1,43 @@
+\section{Discussion and outlook}
+\label{sec:discussion}
+
+The proposed diagnostics shift ringdown interpretation from ``how many damped sinusoids fit''
+to ``which components represent genuine relaxation channels of a non-normal operator.''
+This reframing provides a principled explanation for start-time ambiguity and early-time mode
+proliferation without requiring modifications to General Relativity or Kerr QNM theory.
+
+Immediate next steps include applying the diagnostics to publicly available numerical-relativity
+catalogs to quantify typical isolation times $t_\star$ as functions of mass ratio, spin,
+eccentricity, and precession. A second direction is end-to-end integration with inference
+pipelines, using closure-energy monotonicity as a structural prior or model-acceptance gate.
+
+The framework is NR-ready in the sense that all required ingredients are already present in
+current waveform extraction practice: Appendix~\ref{app:closure_residual_example} gives an
+explicit closure residual in terms of $\psi_4$ and Kerr-consistent projections, and reduced
+resolvent estimates may be constructed using standard QNM solvers and angular projectors. A
+catalog-scale evaluation of $t_\star$ and legitimacy classification on public SXS/RIT
+waveforms is deferred to future work.
+
+As a concrete validation target, applying the closure-residual and pseudospectral diagnostics
+to individual public NR waveforms (e.g.\ selected SXS or RIT simulations) will enable direct
+comparison between isolation times, legitimacy classification, and conventional overtone
+fits in fully nonlinear merger data.
+
+While specific thresholds (e.g.\ $\eta$ and time-smoothing scales) are required operationally,
+the diagnostics are designed to be qualitative and order-of-magnitude stable, with conclusions
+insensitive to reasonable variations of these parameters.
+
+\paragraph*{Testable prediction.}
+Because pseudospectral isolation is controlled by non-normal mixing strength, this framework
+predicts delayed ringdown onset in systems with stronger mode coupling. In particular, mergers
+with high mass ratio, significant precession, or near-extremal remnant spin are expected to
+exhibit larger inferred isolation times $t_\star$ than comparable low-mixing systems, even
+when waveform mismatch appears stable at earlier times. This prediction can be tested
+directly against public numerical-relativity catalogs by correlating inferred $t_\star$ with
+source parameters across families of simulations.
+
+In high-SNR events, statistical uncertainties can become smaller than systematic modeling
+errors \cite{Isi2019,LIGORingdown2021}. Under these conditions, pseudospectral artifacts can masquerade as additional modes or
+as deviations from Kerr predictions. The legitimacy and isolation diagnostics provide an
+operator-level firewall against such false positives by enforcing a physically motivated
+interpretation criterion for mode claims.

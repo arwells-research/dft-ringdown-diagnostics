@@ -1,0 +1,27 @@
+\section{Relation to existing ringdown diagnostics}
+\label{sec:relation_prior}
+
+\subsection{Mismatch-based start time selection}
+
+Conventional pipelines often select ringdown start time by minimizing waveform mismatch or by
+shifting the fit window until inferred parameters stabilize \cite{London2014,LIGORingdown2021}. The pseudospectral onset time
+$t_\star$ defined in \cref{eq:tstar} provides an operator-based explanation for why such
+heuristics succeed only beyond a certain time: before isolation, pseudospectral non-normal mixing makes
+modal parameters unstable and basis-dependent.
+
+\subsection{Overtone analyses}
+
+Overtone-based reconstructions can improve early-time fits \cite{Giesler2019,Isi2019}. The present framework does not
+dispute this empirical observation; instead, it explains early-time overtone proliferation as
+a consequence of pseudospectral overlap. The legitimacy criterion \cref{eq:legitimacy}
+distinguishes overtones that act as genuine relaxation channels from those that merely patch
+prompt transients or non-modal dynamics prior to spectral isolation.
+
+\subsection{Bayesian mode selection}
+
+Bayes-factor approaches quantify statistical preference among candidate modal models
+\cite{Isi2019,LIGORingdown2021}, but do
+not, by themselves, distinguish fitting functions from physical relaxation channels in
+non-normal systems. The closure-energy legitimacy criterion is complementary: it provides a
+theory-driven filter that can be applied alongside Bayesian inference, particularly in the
+high-SNR regime where systematic errors can dominate.

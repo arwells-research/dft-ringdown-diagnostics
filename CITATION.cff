@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite the corresponding Zenodo record."
+authors:
+  - family-names: Wells
+    given-names: A. R.
+title: "Pseudospectral Legitimacy in Black Hole Ringdown"
+version: "1.0.0"
+date-released: 2026-01-01
+repository-code: "https://github.com/arwells-research/dft-ringdown-diagnostics"
+license: CC-BY-4.0
+preferred-citation:
+  type: article
+  authors:
+    - family-names: Wells
+      given-names: A. R.
+  title: "Pseudospectral Legitimacy in Black Hole Ringdown"
+  year: 2026
+  publisher: Zenodo
+  doi: 10.5281/zenodo.XXXXXXXX
+  

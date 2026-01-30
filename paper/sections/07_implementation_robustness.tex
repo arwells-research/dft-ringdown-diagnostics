@@ -1,0 +1,64 @@
+\subsection{Practical workflow for NR and GW pipelines}
+\label{sec:workflow_outline}
+
+For practical use in numerical-relativity (NR) catalogs or gravitational-wave (GW) inference
+pipelines, the proposed diagnostics may be implemented as a lightweight post-processing
+layer. A representative workflow is:
+\begin{enumerate}
+  \item \textbf{Input radiative data.} Obtain a strain-like observable $h(t,\theta,\phi)$ or a
+  curvature scalar $\psi_4(t,\theta,\phi)$ on an extraction sphere (NR) or an inferred
+  ringdown time series (GW).
+  \item \textbf{Fix remnant parameters and candidate frequencies.} Choose a remnant mass and
+  spin (from NR metadata or inspiral inference) and compute candidate Kerr QNM frequencies
+  $\omega_{\ell m n}$ and associated angular projectors $\Pi_{\ell m}(\omega)$.
+  \item \textbf{Define the closure residual and weight.} Select a concrete realization of
+  $\Rop$ (e.g.\ Appendix~\ref{app:closure_residual_example}) and a physically invariant
+  positive weight $W$; in GW applications, detector response and whitening may be absorbed
+  into $W$, allowing $\Eop$ to be evaluated directly on whitened data streams.
+  \item \textbf{Compute closure energy for candidate reconstructions.} For a family of
+  truncated reconstructions $\hat{x}(t)$ (e.g.\ fundamental only, $(0,1)$, $(0,1,2)$),
+  evaluate $\Eop(\hat{x}(t))$ over sliding or fixed windows and compare reconstructed
+  closure-energy trends.
+  \item \textbf{Apply legitimacy and isolation diagnostics.} Interpret the legitimacy
+  criterion operationally: ``monotone to leading order'' corresponds to the absence of
+  sustained positive trends in $\Eop(\hat{x}(t))$ over timescales comparable to the dominant
+  damping time, rather than strict pointwise negativity. Independently estimate reduced
+  resolvent ratios to identify $t_\star$ via \cref{eq:tstar}.
+  \item \textbf{Report stable mode claims.} Report mode content and amplitudes only on
+  windows $t\ge t_\star$ where resolvent isolation holds and closure energy exhibits
+  monotone decay under basis refinement and start-time shifts.
+\end{enumerate}
+
+\section{Implementation and robustness}
+\label{sec:implementation}
+
+\subsection{Computational feasibility}
+
+The proposed pseudospectral diagnostic does not require computing the full pseudospectrum of a
+high-dimensional $\Lop$. In practice, only local resolvent estimates near candidate poles are
+required, and these can be computed on reduced-sector operators $\Lop_{\ell m}$ or via
+reduced-order approximations.
+
+In frequency-domain settings, existing QNM solvers compute quantities closely related to
+response functions near modal poles \cite{Leaver1985,Berti2009}. The diagnostic requires only \emph{relative} resolvent
+magnitudes between nearby candidates in a given sector, rather than an explicit construction
+of $\Lop$.
+
+\subsection{Noise robustness}
+
+In detector data, noise induces stochastic jitter in instantaneous estimates of
+$d\Eop(\hat{x}(t))/dt$. We therefore apply the legitimacy criterion in a time-averaged sense:
+\begin{equation}
+  \left\langle \frac{d}{dt}\Eop(\hat{x}(t)) \right\rangle_{\Delta t} \le 0,
+  \label{eq:avg_legitimacy}
+\end{equation}
+with $\Delta t$ chosen longer than the noise correlation scale but short compared to the
+fundamental damping time. The criterion is also naturally comparative: competing
+reconstructions evaluated under the same noise realization share leading-order noise bias.
+
+\subsection{Strong mixing: eccentricity and precession}
+
+For eccentric or strongly precessing systems, symmetry-based sectorization is weaker and
+pseudospectral overlap is expected to persist longer. In this framework, such systems are
+predicted to exhibit a delayed isolation time $t_\star$, rather than a breakdown of the
+legitimacy diagnostic itself.

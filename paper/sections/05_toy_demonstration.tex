@@ -1,0 +1,137 @@
+\section{Demonstration on synthetic NR-like ringdowns}
+\label{sec:toy_demo}
+
+We demonstrate the proposed diagnostics using synthetic ringdown data designed to mimic
+numerical-relativity (NR) ringdown structure while isolating operator-theoretic effects from
+detector noise and numerical artifacts.
+
+\subsection{Signal model}
+
+We consider a synthetic strain-like observable
+\begin{equation}
+  h(t) = \Re\!\left[
+    \sum_{n=0}^{N} A_n\,
+    e^{(-\alpha_n + i\omega_n)(t-t_0)} e^{i\phi_n}
+  \right]
+  + h_{\mathrm{prompt}}(t),
+  \label{eq:toy_signal}
+\end{equation}
+where $n=0$ corresponds to the fundamental mode (e.g.\ ``220''), $n=1$ to the first overtone
+(e.g.\ ``221''), and $n=2$ to the second overtone (e.g.\ ``222''). The term
+$h_{\mathrm{prompt}}(t)$ models a short-lived non-modal transient associated with merger
+dynamics.
+
+\emph{Prompt term specification.}
+For reproducibility we take
+\begin{equation}
+  h_{\mathrm{prompt}}(t) = A_p \exp\!\left(-\frac{(t-t_0)^2}{2\sigma^2}\right)
+  \cos\!\big(\omega_p (t-t_0) + \phi_p\big),
+  \label{eq:prompt_term}
+\end{equation}
+with $\sigma/M=1$, $\omega_p M=0.6$, and $\phi_p$ drawn uniformly on $[0,2\pi)$; qualitative
+conclusions are insensitive to moderate variations of these parameters.
+
+\emph{Representative parameters.}
+Unless otherwise stated, we set units by the remnant mass $M$ and use values chosen to be
+broadly Kerr-like in overtone hierarchy:
+\begin{align}
+  \omega_0 M &= 0.53, & \alpha_0 M &= 0.08, & A_0 &= 1.0, \nonumber\\
+  \omega_1 M &= 0.50, & \alpha_1 M &= 0.24, & A_1 &= 0.6, \nonumber\\
+  \omega_2 M &= 0.47, & \alpha_2 M &= 0.40, & A_2 &= 0.3,
+  \label{eq:toy_params}
+\end{align}
+with phases $\phi_n$ drawn uniformly on $[0,2\pi)$.
+The prompt term $h_{\mathrm{prompt}}(t)$ is taken to be a rapidly decaying
+Gaussian-modulated oscillation with support primarily for $(t-t_0)/M \lesssim 5$.
+
+\subsection{Reconstructions}
+
+We compare truncated reconstructions using:
+(i) the fundamental only,
+(ii) fundamental plus first overtone,
+(iii) fundamental plus first two overtones,
+mirroring strategies commonly used in NR-calibrated ringdown analyses
+\cite{Giesler2019,Isi2019}. Each reconstruction is fit over a family of start times $t_0$ using
+least-squares minimization of waveform residuals.
+
+\subsection{Closure-energy diagnostics}
+
+For each reconstruction we compute the closure energy $\Eop(\hat{x}(t))$ defined in
+\cref{eq:closure_energy}, using a fixed canonical weight $W$ and a linearized closure residual
+operator $D\Rop_{X_\star}$ chosen to penalize projection inconsistency between the radiative
+and asymptotically stationary representations.
+
+We verified in synthetic tests that replacing $W$ by nearby physically motivated alternatives
+(e.g.\ equivalent norms under residual-space reparameterizations or mild curvature-weighted
+variants) preserves the qualitative monotonicity classification and inferred $t_\star$; a
+systematic catalog-scale sensitivity study is deferred to future work.
+
+A particularly transparent diagnostic is a plot of closure energy versus time for competing
+reconstructions:
+\begin{equation}
+  \Eop_{(0)}(t), \quad \Eop_{(0,1)}(t), \quad \Eop_{(0,1,2)}(t).
+\end{equation}
+Figure~\ref{fig:closure_energy} shows a representative example.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{closure_energy_vs_time.pdf}
+  \caption{
+  Closure energy $\mathcal{E}(\hat{x}(t))$ as a function of time for competing truncated
+  modal reconstructions of a synthetic NR-like ringdown signal. Curves correspond to
+  reconstructions using the fundamental mode only (0), the fundamental plus first overtone
+  (0,1), and the fundamental plus first two overtones (0,1,2). At early times
+  $(t-t_0)/M \lesssim t_\star/M \sim 8$, inclusion of additional overtones reduces waveform
+  residuals but induces oscillations or transient growth in $\mathcal{E}$, violating the
+  monotonicity condition of the legitimacy criterion. This behavior indicates
+  pseudospectral overlap and non-normal mixing rather than independent relaxation channels.
+  For $t \ge t_\star$, closure energy decays monotonically and reconstructions stabilize
+  under window shifts, marking the onset of physically interpretable ringdown.
+  }
+  \label{fig:closure_energy}
+\end{figure}
+
+At early times $(t-t_0)/M \lesssim t_\star/M \sim 8$, inclusion of additional overtones reduces
+waveform residuals but induces oscillations or transient growth in $\Eop(\hat{x}(t))$, violating
+the legitimacy criterion \cref{eq:legitimacy}. In particular, the $(0,1,2)$ reconstruction
+exhibits clear intervals with $d\Eop/dt>0$, despite achieving the lowest instantaneous
+waveform mismatch.
+
+For $t \ge t_\star$, pseudospectral overlap diminishes, resolvent isolation improves, and the
+$(0)$ and $(0,1)$ reconstructions exhibit monotone closure-energy decay. In this regime, modal
+coefficients stabilize under window shifts and basis refinements, indicating entry into a
+physically interpretable ringdown phase.
+
+While non-normality provides a natural explanation for early-time mode ambiguity, nonlinear
+effects and higher-order perturbations may also contribute during the prompt response; the
+present framework does not model these effects explicitly, but instead supplies a criterion
+for when linear modal interpretations become reliable.
+
+\subsection{Interpretation of pseudospectral artifacts}
+
+Classifying an early-time component as a ``pseudospectral artifact'' does not imply that the
+corresponding Kerr QNM is unphysical or absent from the spectrum
+\cite{Ota2021,Boyd2022}. Rather, it indicates that the mode is not yet spectrally isolated from
+the surrounding pseudospectrum, so its coefficient cannot be interpreted as an independent
+relaxation amplitude.
+
+In this regime, additional basis elements may be mathematically required to reconstruct the
+signal, but they function as non-modal patches compensating for non-normal mixing rather than
+as asymptotic decay channels. Only once resolvent isolation and monotone closure-energy decay
+are achieved do overtone amplitudes acquire physical meaning as independent relaxation modes.
+
+\paragraph*{Noise robustness.}
+The diagnostics introduced here are intended primarily for high–signal-to-noise ratio (SNR)
+events, where early-time modeling ambiguities dominate statistical uncertainty. In the
+presence of realistic detector noise, instantaneous estimates of $d\Eop/dt$ may exhibit
+short-time fluctuations; accordingly, the legitimacy criterion is applied to time-averaged or
+smoothed closure-energy trends rather than pointwise derivatives. 
+In the results shown here, smoothing is performed over windows of duration $\Delta t/M \sim 1\text{--}3$,
+and conclusions are stable under modest variations in this range.
+Synthetic injections with
+stationary Gaussian noise indicate that the monotonicity classification is stable provided the
+signal-to-noise ratio in the dominant mode exceeds $\mathcal{O}(20)$ over the analysis window;
+in tests at representative values $\mathrm{SNR}=15,\,30,$ and $50$, the diagnostic degrades
+gracefully at low SNR by deferring $t_\star$ to later times rather than producing
+false-positive mode identifications. A systematic study across LIGO–Virgo–KAGRA noise
+realizations is deferred to future work.

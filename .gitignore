@@ -1,0 +1,66 @@
+# =========================
+# dft-ringdown-diagnostics
+# .gitignore
+# =========================
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+ENV/
+.env
+
+# --- LaTeX general build artifacts ---
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.brf
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.nav
+*.snm
+*.vrb
+
+# BibTeX / biber extras
+*-blx.bib
+*.bib.bak
+
+# latexmk / build dirs
+build/
+latex.out/
+out/
+
+# --- Repo-specific: ignore LaTeX byproducts in paper/ but keep PDFs we ship ---
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.fdb_latexmk
+paper/*.fls
+paper/*.log
+paper/*.out
+
+# Keep the distributable artifacts
+!paper/pseudospectral_legitimacy_black_hole_ringdown.pdf
+!paper/closure_energy_vs_time.pdf
+
+
+# editor notes
+*Notes.bib

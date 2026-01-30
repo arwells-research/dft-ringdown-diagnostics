@@ -1,0 +1,94 @@
+\section{Pseudospectral isolation and ringdown onset}
+\label{sec:pseudospectral_isolation}
+
+Non-normality implies that spectral separation alone is insufficient to guarantee stable
+modal interpretation. In such systems, stability and interpretability are governed by the
+resolvent norm $\|(zI-\Lop)^{-1}\|$, rather than by eigenvalues alone.
+
+\subsection{Pseudospectrum}
+
+For $\varepsilon>0$, define the $\varepsilon$-pseudospectrum \cite{Trefethen1997,TrefethenEmbree2005}
+\begin{equation}
+  \pspec(\Lop) \equiv \left\{ z\in\mathbb{C}\,:\, \|(zI-\Lop)^{-1}\| > \varepsilon^{-1}\right\}.
+  \label{eq:pseudospec}
+\end{equation}
+When $\Lop$ is non-normal, $\pspec(\Lop)$ can extend far beyond neighborhoods of the spectrum
+$\spec(\Lop)$, producing transient amplification, strong mode interference, and spectral
+instability under small perturbations. Such behavior has been shown to be relevant for black
+hole ringdown and waveform modeling, particularly at early times following merger
+\cite{Boyd2022}.
+
+In practice, $\varepsilon$ need not be specified independently; pseudospectral structure is
+probed operationally through resolvent norm ratios near candidate modal frequencies, as
+described below.
+
+\subsection{Reduced-sector resolvent diagnostics}
+
+Direct computation of $\pspec(\Lop)$ is typically intractable for high-dimensional operators.
+We therefore restrict attention to approximately invariant angular sectors. Let $P_{\ell m}$
+denote a projector onto an approximate $(\ell,m)$ subspace, defined for example by symmetry
+considerations and adiabatic angular projectors appropriate to Kerr perturbation theory.
+Define the reduced operator
+\begin{equation}
+  \Lop_{\ell m} \equiv P_{\ell m}\,\Lop\,P_{\ell m}.
+\end{equation}
+For candidate eigenvalues $\lambda_{\ell m n}$ in this sector, define local resolvent
+operator magnitudes
+\begin{equation}
+  R_{\ell m}(z) \equiv \left\|(zI - \Lop_{\ell m})^{-1}\right\|.
+  \label{eq:Rlm}
+\end{equation}
+
+The reduced-sector approximation is justified when inter-sector couplings are perturbative on
+the time window of interest, i.e.,
+\(
+\|P_{\ell m}\Lop P_{\ell' m'}\| \ll \|P_{\ell m}\Lop P_{\ell m}\|
+\)
+for $(\ell',m')\neq(\ell,m)$ in an appropriate operator norm. In systems with strong symmetry
+breaking---such as highly precessing, eccentric, or near-extremal-spin remnants---this
+condition may fail. In such cases, the diagnostic can be applied to an expanded block
+containing the dominant coupled sectors rather than a single $(\ell,m)$ subspace. The
+framework itself does not require strict sector decoupling; it requires only that the chosen
+reduced operator capture the dominant mixing channels relevant to the analysis window.
+
+\subsection{Operational definition of ringdown start time}
+
+We define the ringdown onset time $t_\star$ as the earliest time at which the fundamental mode
+in a target sector becomes resolvent-isolated relative to nearby candidate modes:
+\begin{equation}
+  t_\star \equiv \inf\left\{t:\;
+  \frac{R_{\ell m}(\lambda_{\ell m 0})}{\max_{k\neq 0} R_{\ell m}(\lambda_{\ell m k})} < \eta
+  \right\},
+  \label{eq:tstar}
+\end{equation}
+where $\eta\ll 1$ is a robustness threshold.
+
+Operationally, $\eta$ sets the tolerance for resolvent isolation rather than defining a sharp
+spectral boundary. In synthetic tests we find that qualitative conclusions are stable under
+order-of-magnitude variations in $\eta$, provided it is chosen well below unity; throughout
+this work we use $\eta \sim 0.1$ as a conservative reference value.
+
+In particular, we observe stable qualitative behavior over the range
+$0.03 \lesssim \eta \lesssim 0.3$ in the synthetic experiments reported below; values closer
+to unity blur isolation by construction, while excessively small values primarily delay
+reported $t_\star$ without changing the monotonicity classification.
+
+At times earlier than the onset time $t_\star$, pseudospectral overlap prevents distinct modal components from being
+physically separable: multiple basis elements may be required to reconstruct the waveform,
+but their coefficients cannot be interpreted as independent relaxation amplitudes. For
+$t\ge t_\star$, dominant modes become resolvent-isolated, and modal interpretations stabilize
+under window shifts and basis refinements, providing an operator-based criterion for the onset
+of physically interpretable ringdown.
+
+\paragraph*{Relation to existing approaches.}
+Conventional ringdown analyses typically determine start times using waveform mismatch
+stabilization or Bayesian model selection, while overtone-based studies interpret early-time
+improvements in fit quality as evidence for additional quasinormal modes
+\cite{Giesler2019,Isi2019}. Subsequent work has emphasized ambiguities associated with nonlinear
+merger dynamics, mode mixing, and basis dependence at early times
+\cite{Ota2021,Boyd2022}. The present framework is complementary: rather than asking whether a
+given basis element improves a fit, it asks whether its inclusion corresponds to a
+resolvent-isolated relaxation channel that monotonically reduces projection inconsistency. In
+this sense, the legitimacy criterion and pseudospectral isolation test reframe ongoing debates
+about overtone interpretation in terms of non-normal dynamics, without introducing new physics
+beyond linearized General Relativity.

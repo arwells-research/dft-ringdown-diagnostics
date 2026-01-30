@@ -1,0 +1,160 @@
+% ============================
+% Appendix A: Example realization of the closure residual
+% ============================
+\appendix
+\section{Example realization of the closure residual in Kerr ringdown}
+\label{app:closure_residual_example}
+
+This appendix provides a concrete (illustrative) realization of the abstract closure residual
+operator $\Rop$ introduced in \cref{sec:closure_legitimacy}. The purpose is to make the
+construction operational for readers familiar with black-hole perturbation theory and
+numerical-relativity (NR) waveform extraction, without narrowing the general framework. The
+main text requires only that $\Rop$ vanish in the asymptotically stationary Kerr limit and
+that the induced closure energy be monotone under relaxation.
+
+For example, in a radiative-field realization, $\mathcal{Y}$ may be taken to consist of
+Newman--Penrose scalars $\psi_4$ evaluated in asymptotic coordinates minus their best
+Kerr-consistent projections onto spin-weighted spheroidal harmonic modes at fixed complex
+frequency.
+
+\subsection{Radiative data and Kerr-consistent projection}
+
+Let $h(t,\theta,\phi)$ denote a strain-like observable extracted in the wave zone (or at null
+infinity), and let $\psi_4(t,\theta,\phi)$ denote the Newman--Penrose curvature scalar used in
+many NR pipelines. For definiteness, we take $\psi_4$ as the radiative field. In a Kerr
+background, separated perturbations may be expanded in spin-weighted spheroidal harmonics
+${}_{-2}S_{\ell m}(\theta,\phi;\,a\omega)$ with complex frequencies $\omega$ determined by QNM
+boundary conditions. The key point for the present construction is that the angular basis is
+\emph{frequency-locked} through the combination $a\omega$, so that ``angular classification''
+and spectral content must be treated self-consistently.
+
+Fix a target sector $(\ell,m)$ and a candidate complex frequency $\omega$ (e.g.\ a QNM
+frequency $\omega_{\ell m n}$). Define the Kerr-consistent angular projection operator
+$\Pi_{\ell m}(\omega)$ acting on functions on the sphere by
+\begin{equation}
+  \begin{aligned}
+    \Pi_{\ell m}(\omega)\, f(\theta,\phi)
+    &\;\equiv\;
+    \left\langle {}_{-2}S_{\ell m}(\cdot;\,a\omega),\, f(\cdot)\right\rangle_{\Omega}\;
+    {}_{-2}S_{\ell m}(\theta,\phi;\,a\omega),
+  \end{aligned}
+  \label{eq:Pi_lm_omega}
+\end{equation}
+where $\langle\cdot,\cdot\rangle_{\Omega}$ is the standard $L^2$ inner product on the sphere
+(with the appropriate spin-weight measure). In practice, $\Pi_{\ell m}(\omega)$ may be
+implemented by numerical evaluation of ${}_{-2}S_{\ell m}$ and quadrature on the extraction
+sphere, or by mapping through a spherical-harmonic basis using known spheroidal--spherical
+mixing coefficients.
+
+We emphasize that \cref{eq:Pi_lm_omega} is \emph{not} assumed to commute with the full evolution
+operator at early times; it is an \emph{adiabatic classifier} that becomes accurate as the
+spacetime approaches Kerr. The closure residual below measures precisely the mismatch between
+a radiative representation and its Kerr-consistent projection.
+
+\subsection{A closure residual as projection mismatch}
+
+Let $\mathcal{S}$ denote a space of radiative states (for example, the space of time series
+with values in $L^2(S^2)$ over a chosen analysis window). Define the residual operator
+$\Rop:\mathcal{S}\to\mathcal{Y}$ by
+\begin{equation}
+  \begin{aligned}
+  \Rop[\psi_4](t,\theta,\phi)
+  \;\equiv\;
+  \psi_4(t,\theta,\phi) - \sum_{\ell,m}\Pi_{\ell m}(\omega_{\ell m 0})\,\psi_4(t,\theta,\phi),
+  \end{aligned}
+  \label{eq:Rop_projection_mismatch}
+\end{equation}
+where $\omega_{\ell m 0}$ may be taken as the fundamental Kerr QNM frequency in each sector
+(using a remnant mass and spin inferred from the inspiral or NR). The sum in
+\cref{eq:Rop_projection_mismatch} may be restricted to the dominant sectors used in the
+analysis; its precise truncation is not essential for the formal structure.
+
+Interpretation: $\Rop[\psi_4]$ is the component of the radiative field that fails to be
+captured by the Kerr-consistent angular decomposition at the reference frequencies. In the
+late-time Kerr limit, where $\psi_4$ is well-described by separated QNMs in spheroidal
+harmonics, this mismatch tends to zero (up to numerical truncation and finite-radius effects).
+
+\paragraph*{Linearization.}
+Let $X_\star$ denote the asymptotically stationary Kerr state, and let $x$ denote a
+perturbation in the radiative tangent space $\Xrad$. Linearizing
+\cref{eq:Rop_projection_mismatch} about $X_\star$ yields
+\begin{equation}
+  D\Rop_{X_\star}x
+  \;\approx\;
+  x - \sum_{\ell,m}\Pi_{\ell m}(\omega_{\ell m 0})\,x,
+  \label{eq:DRop_linearized_projection}
+\end{equation}
+where we have suppressed the dependence of $\Pi_{\ell m}$ on the remnant parameters for
+notational clarity. More refined linearizations may include the variation of
+$\Pi_{\ell m}(\omega)$ under perturbations of $\omega$ and of the remnant parameters; such
+terms are higher order in the present methods note and are naturally incorporated in
+catalog-scale applications.
+
+\subsection{Canonical weight from radiated-energy norms}
+
+The residual space $\mathcal{Y}$ may be taken as the same function space as the extracted
+radiative field (e.g.\ time series valued in $L^2(S^2)$), and the weight $W$ in
+\cref{eq:closure_energy} may be chosen to coincide with a physically motivated quadratic norm.
+A natural choice, consistent with the interpretation of $\Rop$ as ``non-Kerr-consistent''
+radiative content, is a flux-like norm on $\psi_4$ residuals:
+\begin{equation}
+  \normW{y}^2
+  \;\equiv\;
+  \int_{t_0}^{t_1}\! dt\int_{S^2}\! d\Omega\; \alpha_W(t)\, |y(t,\theta,\phi)|^2,
+  \label{eq:W_flux_norm}
+\end{equation}
+where $\alpha_W(t)\ge 0$ is an optional taper or whitening weight (for example, to suppress
+window-edge artifacts or to incorporate detector noise weighting). With $\alpha_W\equiv 1$,
+\cref{eq:W_flux_norm} is an $L^2$ norm in time and angle. More sophisticated $W$ may incorporate
+frequency weighting consistent with the standard energy flux at null infinity expressed in
+terms of $\psi_4$; for the legitimacy diagnostic, only positivity and physical invariance
+properties are required.
+
+Under \cref{eq:DRop_linearized_projection} and \cref{eq:W_flux_norm}, the closure energy
+\cref{eq:closure_energy} becomes
+\begin{equation}
+  \begin{aligned}
+    r(t,\theta,\phi)
+    &\equiv
+    x(t,\theta,\phi)
+    - \sum_{\ell,m}\Pi_{\ell m}(\omega_{\ell m 0})\,x(t,\theta,\phi),
+    \\
+    \Eop(x)
+    &= \tfrac12 \int_{t_0}^{t_1}\! dt\int_{S^2}\! d\Omega\;\alpha_W(t)\,|r(t,\theta,\phi)|^2,
+  \end{aligned}
+  \label{eq:Eop_projection_energy}
+\end{equation}
+which penalizes radiative content that fails to admit a Kerr-consistent angular
+representation on the analysis window. This provides an explicit example of a canonical
+weight class: $W$ is fixed up to overall scale by demanding invariance under admissible
+reparameterizations of the residual field (e.g.\ changes of angular basis and normalization)
+and by selecting a flux-like norm corresponding to physically radiated energy in the chosen
+representation.
+
+\subsection{Remarks on scope}
+
+The construction above is intended as a concrete realization for the ringdown application,
+not as a unique definition. Alternative realizations of $\Rop$ are equally compatible with the
+formalism, including (i) constraint-residual constructions on Cauchy slices using Hamiltonian
+and momentum constraints, (ii) gauge-consistency residuals, and (iii) residuals defined by
+mismatch between NR-extracted $\psi_4$ and solutions of the Teukolsky equation driven by a
+best-fit Kerr background. In all cases, the legitimacy criterion and pseudospectral isolation
+diagnostics depend only on the induced positive semidefinite closure-depth operator
+$\Dop=(D\Rop_{X_\star})^\ast W D\Rop_{X_\star}$ and on the non-normal evolution structure.
+
+\paragraph*{Toy non-normal analogy.}
+To further illustrate the closure-residual construction independently of general-relativistic
+details, consider a simple finite-dimensional analogy. Let $L$ be a non-normal $2\times2$
+linear operator with eigenvalues having negative real parts but non-orthogonal eigenvectors,
+so that transient amplification occurs despite asymptotic decay. A signal evolved under $L$
+may be accurately reconstructed at early times by including multiple decaying exponentials,
+even though these components do not correspond to independent relaxation channels. In this
+setting, the closure residual corresponds to the projection mismatch between a truncated modal
+reconstruction and the full state, while the closure energy is simply the squared norm of the
+discarded component. Early-time inclusion of additional modes can reduce pointwise residuals
+while increasing the closure energy, reflecting non-normal mixing rather than genuine decay
+channels. Only once the dominant eigenmode becomes spectrally isolated does the closure energy
+decay monotonically, recovering a physically interpretable modal description. This toy example
+captures, in minimal form, the same distinction between fitting accuracy and dynamical
+legitimacy emphasized in the Kerr ringdown context.
+

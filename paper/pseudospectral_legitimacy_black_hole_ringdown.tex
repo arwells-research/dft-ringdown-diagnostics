@@ -1,0 +1,75 @@
+% main.tex
+\documentclass[aps,prd,reprint,nofootinbib,superscriptaddress]{revtex4-2}
+
+% --- Packages ---
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{mathtools}
+\usepackage{bm}
+\usepackage{physics}
+\usepackage{siunitx}
+\usepackage{graphicx} 
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+% --- Hyperref setup ---
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  citecolor=blue,
+  urlcolor=blue,
+  pdfauthor={A. R. Wells},
+  pdftitle={A \Sigma_2--Pseudospectral Diagnostic for Ringdown Mode Legitimacy},
+}
+
+% --- Macros ---
+\newcommand{\Xrad}{\mathcal{X}_{\mathrm{rad}}}
+\newcommand{\Lop}{\mathcal{L}}
+\newcommand{\Rop}{\mathcal{R}}
+\newcommand{\Eop}{\mathcal{E}}
+\newcommand{\Dop}{\mathcal{D}}
+\newcommand{\Gop}{\mathcal{G}}
+\newcommand{\Aop}{\mathcal{A}}
+
+\newcommand{\inner}[2]{\left\langle #1,\, #2 \right\rangle}
+\newcommand{\normW}[1]{\left\lVert #1 \right\rVert_{W}}
+\newcommand{\spec}{\sigma}
+\newcommand{\pspec}{\sigma_{\varepsilon}}
+
+% --- Title / Author ---
+\begin{document}
+
+\title{A $\Sigma_2$--Pseudospectral Diagnostic for Ringdown Mode Legitimacy}
+
+\author{A. R. Wells}
+\affiliation{Dual-Frame Research Group}
+
+\date{\today}
+
+% --- Abstract ---
+\begin{abstract}
+\input{sections/00_abstract}
+\end{abstract}
+
+\maketitle
+
+% --- Main text ---
+\input{sections/01_motivation}
+\input{sections/02_operator_model}
+\input{sections/03_closure_energy}
+\input{sections/04_pseudospectral_isolation}
+\input{sections/05_toy_demonstration}
+\input{sections/06_relation_to_prior_work}
+\input{sections/07_implementation_robustness}
+\input{sections/08_discussion_outlook}
+\input{sections/09_conclusion}
+% --- Appendices ---
+\appendix
+\input{sections/10_appendix_A}
+
+% --- References ---
+\bibliography{refs}
+
+\end{document}

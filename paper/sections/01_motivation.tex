@@ -1,0 +1,22 @@
+\section{Motivation}
+
+Black hole spectroscopy aims to test strong-field General Relativity by comparing observed
+ringdown frequencies and damping rates to Kerr quasinormal mode predictions. In practice,
+high-SNR events highlight two persistent difficulties: (i) the inferred mode content depends
+sensitively on the chosen ringdown start time, and (ii) early-time fits can be improved by
+including additional overtones, raising concerns about overfitting prompt transients or
+model mismatch.
+
+These issues are frequently treated as signal-processing or window-selection problems
+\cite{Giesler2019,London2014,Ota2021}.
+Here we reframe them as an operator-physics problem: dissipative ringdown dynamics are
+generally governed by a \emph{non-normal} linearized evolution operator, for which eigenvalue
+stability and mode separability are controlled by the pseudospectrum rather than the spectrum
+alone \cite{Trefethen1997,TrefethenEmbree2005,Boyd2022}.
+
+We further propose a mode-legitimacy criterion based on monotonic reduction of a
+closure-energy functional. Informally, a genuine relaxation mode should reduce an
+appropriately defined measure of projection inconsistency (a ``closure residual'') as the
+post-merger spacetime relaxes toward an asymptotically stationary state. This yields a
+principled distinction between basis elements that merely improve waveform fits and modes
+that correspond to independent physical relaxation channels.
